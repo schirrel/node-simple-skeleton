@@ -9,7 +9,7 @@ Logger.prototype.debug = function (logText) {
 };
 
 Logger.prototype.error = function (logText) {
-    console.log(new Date() + ' - error:::::' + logText);
+    console.error(new Date() + ' - error:::::' + logText);
 };
 
 module.exports = new Logger();
