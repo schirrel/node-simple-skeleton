@@ -9,7 +9,8 @@
         "eslint-fix": "eslint ./ --fix",
         "start:dev": "nodemon index.js",
         "build": "webpack",
-        "prod": "node dist/api.bundle.js"
+        "prod": "node dist/api.bundle.js",
+        "debug": "nodemon --inspect  src/index.js   "
     },
     "dependencies": {
         "body-parser": "^1.19.0",

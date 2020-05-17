@@ -49,7 +49,7 @@ module.exports = (() => {
 
 		for (let i = 0; i < keys.length; i++) { 
 			let key = options;
-			myQuery += '' + (table.getColumn[key])+ " = " + ' $' + (i + 1) + (i < keys.length - 1 ? ',' : '');
+			myQuery += '' + (table.getColumn(key))+ " = " + ' $' + (i + 1) + (i < keys.length - 1 ? ',' : '');
 			vals.push(options[key]);		
 		}
 

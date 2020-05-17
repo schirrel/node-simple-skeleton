@@ -2,7 +2,7 @@ const routers = require('./router/routers');
 const express = require('express');
 const app = express();
 const logger = require('./utils/logger');
-const db = require('./controllers/database/Database');
+const db = require('./database/Database');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 dotenv.config();

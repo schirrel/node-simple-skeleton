@@ -15,7 +15,12 @@ class Base {
 	_addColumn(property, column){
 		this._columns[property] = column;
 	}
+
 	_getColumn(property) {
+		return this._columns[property];
+	}
+
+	getColumn(property) {
 		return this._columns[property];
 	}
 	_persistObject () {
@@ -76,7 +81,7 @@ class Base {
 		
 	}
 	static async search (options) {
-		const params = queryBuilder.search(this, options);
+		const params = queryBuilder.search(new this(), options);
 		const res = await this._db.query(params.query, params.values);
 		let response = await res.rows;
         return response ;

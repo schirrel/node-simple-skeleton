@@ -1,7 +1,8 @@
 const TokenService = require('./TokenService');
-const service = new require('./UserService')();
+const UserService = require('./UserService');
+const service = new UserService();
 class SessionService {
-	static async autenticar(usuario) {
+	static async authUser(usuario) {
 	let result = await service.search(usuario);
 	if(result && result.length) {
 		let found = result[0];

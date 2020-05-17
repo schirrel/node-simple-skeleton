@@ -1,17 +1,14 @@
 
 let router = require("express").Router();
-const UserService = require('../controllers/service/UserService');
-
-this.service = new UserService();
+const SessionService = require('../controllers/service/SessionService');
 
 router.post('/login', async (req, res) => {
-	let dto = req.body;
-
-	let entity = await  this.service.save(dto);	
+	let credentials = req.body;
+	let token = await SessionService.authUser(credentials);;	
 	if(entity.erro) {
-		res.status(500).send(entity);
+		res.status(500).send(credentials);
 	} else	
-	res.send(entity);
+	res.send(token);
 });
 
 module.exports = router;
