@@ -6,7 +6,7 @@ class User extends Base{
 	this._addColumn('email', 'EMAIL');
 	this._addColumn('username', 'USERNAME');
 	this._addColumn('password', 'PASSWORD');
-	Object.assign(this, args);
+	this._setValues(args);
 	}
 }
 

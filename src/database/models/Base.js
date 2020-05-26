@@ -10,7 +10,11 @@ class Base {
 	}
 
 	
-
+	_setValues(vals) {
+		for(key of vals){
+			this._colunas[key] = vals[key];
+		}
+	}
 
 	_addColumn(property, column){
 		this._columns[property] = column;
