@@ -33,4 +33,5 @@ app.get('/', function (req, res) {
 
 app.use(routers);
 logger.info('Router setted');
-db.getConnection();
+db.query('select 1')
+

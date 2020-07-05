@@ -5,10 +5,10 @@
 module.exports = (() => {
 
 
-const Cliente = require('./models/Cliente');
+const User = require('./models/User');
 
 
     return {
-    	Cliente: Cliente
+    	User: User
     };
 })();

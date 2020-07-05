@@ -7,55 +7,56 @@ module.exports = (() => {
     const logger = require('../utils/logger');
     dotenv.config();
     const {
-        Client
+        Pool
     } = require('pg');
     const options = {
-        connectionString: "postgres://wkarmfwakestnl:feae316b4f50c1c30a77c4f0d4921e43c5ff25daf87d9e797bfdf096467529fa@ec2-52-87-135-240.compute-1.amazonaws.com:5432/d1v26t1qgpt753", 
+        user: process.env.DB_USER,
+        host: process.env.DB_URL,
+        database: process.env.DB_DATABASE,
+        password: process.env.DB_PASSWORD,
         port: 5432,
         ssl: true
     };
-    const client = new Client(options);
-    
+    const pool = new Pool(options);
+
     const createTables = (client) => {
 
-        client.query( `
+        client.query(`
         CREATE TABLE IF NOT EXISTS EXTENSAO (
         ID serial,
         EMAIL VARCHAR (50) UNIQUE,
         PASSWORD VARCHAR (50),
         LAST_PAYMENT date);
         `);
-        client.query( `
+        client.query(`
         CREATE TABLE IF NOT EXISTS LOGIN (
           ID serial,
           USUARIO VARCHAR (50) UNIQUE,
           SENHA VARCHAR (50)
         );
         `);
-       
+
     }
 
-    const getConnection = () => {
-     
-        console.log('getConnection')
- 
-        if(!client._connected) {
-                 client.connect()
-            .then((res) => {
-                createTables(client);
-                CONNECTED = client;
-                logger.info("Database Connected", res)
-             })
-            .catch((res) => { 
-                console.log('Problem on connection')});
-                connection = false;
+    pool.on('connect', () => {
+        createTables();
+        console.log('Database connected');
+    });
+
+    const wrapper = (query, params = []) => pool.query(query, params);
+
+
+    (async () => {
+        let client = await pool
+            .connect();
+
+        if (client) {
+            createTables();
+            console.log('Database connected');
         }
 
-            return client;
-        };
- 
-
+    })()
     return {
-        getConnection: getConnection
-    };
+        query: wrapper
+    }
 })();
