@@ -22,7 +22,7 @@
         "mssql": "^6.2.0",
         "node-cron": "^2.0.3",
         "node-fetch": "^2.6.0",
-        "nodemailer": "^2.4.1",
+        "nodemailer": "^6.4.16",
         "pg": "^7.12.1"
     },
     "private": true,
@@ -42,7 +42,7 @@
         "husky": "^4.2.5",
         "node-cron": "^2.0.3",
         "node-fetch": "^2.6.0",
-        "nodemailer": "^2.4.1",
+        "nodemailer": "^6.4.16",
         "nodemon": "^2.0.2",
         "pg": "^7.12.1",
         "style-loader": "^1.2.1",
